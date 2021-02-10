@@ -1,0 +1,163 @@
+<mvc:View 
+	controllerName="com.test.FUI5.controller.Detail" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:s="sap.m.semantic"
+	displayBlock="true" 
+	xmlns="sap.m">
+	<s:DetailPage title='Orders' showFooter='false'>
+		<s:customHeaderContent>
+ 			<Toolbar>
+ 				<ToolbarSpacer />
+ 				<Text text='Abhishek Chaturvedi' /> 
+ 			</Toolbar>
+ 		</s:customHeaderContent>
+		<s:content>
+			<!-- 	iconAlt="{MainMRef>Region}" -->
+			<ObjectHeader
+				binding="{MainMRef>/Employee}"
+				title="{MainMRef>LastName} {MainMRef>FirstName}"
+				number="{MainMRef>PostalCode}"
+				numberUnit="{MainMRef>Country}"
+				class="sapUiResponsivePadding--header" >
+				<statuses>
+					<ObjectStatus
+						text="{MainMRef>City}"
+						state="Success" />
+				</statuses>
+				<ObjectAttribute text="{MainMRef>Title}" />
+				<ObjectAttribute text="{MainMRef>Address}" />
+				<ObjectAttribute text="{MainMRef>Notes}" />
+			</ObjectHeader>			
+						<Table id='orderTblId'
+						busy='{MainMRef>/oa/orderTblBusy}'
+							mode="SingleSelectMaster"
+							inset="false"
+							width='100%'
+							sticky="HeaderToolbar,InfoToolbar,ColumnHeaders"
+							items="{path: 'OrdersMRef>/EOrders', templateShareable: false}"
+							selectionChange='onTaskSelected'
+							class='bnsfUiTableHdr'>
+							<columns>
+								<Column>
+									<Text 
+										text="Customer ID" 
+										class='bnsfUiMText'/>
+								</Column>
+								<Column 
+									hAlign="Left" >
+									<Text 
+										text="Freight" 
+										class='bnsfUiMText'/>
+								</Column>
+								<Column 
+									hAlign="Left"
+									demandPopin='true'
+									minScreenWidth="Desktop">
+									<Text 
+										text="Order Date"
+										class='bnsfUiMText' />
+								</Column>
+								<Column>
+									<Text text="Order ID" />
+								</Column>
+								<Column>
+									<Text 
+										text="Required Date"
+										class='bnsfUiMText' />
+								</Column>
+								<Column>
+									<Text 
+										text="Ship Address"
+										class='bnsfUiMText' />
+								</Column>								
+								<Column>
+									<Text 
+										text="Ship City"
+										class='bnsfUiMText' />
+								</Column>								
+								<Column>
+									<Text 
+										text="Ship Country"
+										class='bnsfUiMText' />
+								</Column>								
+								<Column>
+									<Text 
+										text="Ship Name"
+										class='bnsfUiMText' />
+								</Column>								
+								<Column>
+									<Text 
+										text="Ship Postal Code"
+										class='bnsfUiMText' />
+								</Column>								
+								<Column>
+									<Text 
+										text="Shipped Date"
+										class='bnsfUiMText' />
+								</Column>								
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text 
+											text='{OrdersMRef>CustomerID}' />
+									</cells>
+									<cells>
+										<Text 
+											text='{OrdersMRef>Freight}' />
+									</cells>
+									<cells>
+										<Text 
+											text="{path: 'OrdersMRef>OrderDate', 
+												type: 'sap.ui.model.type.DateTime',
+												formatOptions: {
+												style: 'medium'
+												}}" 
+										/>
+									</cells>
+									<cells>
+										<Text 
+											text='{OrdersMRef>OrderID}' />
+									</cells>
+									<cells>
+										<Text 
+											text="{path: 'OrdersMRef>RequiredDate',
+												type: 'sap.ui.model.type.DateTime',
+												formatOptions: {
+												style: 'medium'
+												}}"/>
+									</cells>
+									<cells>
+										<Text 
+											text='{OrdersMRef>ShipAddress}' />
+									</cells>
+									<cells>
+										<Text 
+											text='{OrdersMRef>ShipCity}' />
+									</cells>
+									<cells>
+										<Text 
+											text='{OrdersMRef>ShipCountry}' />
+									</cells>
+									<cells>
+										<Text 
+											text='{OrdersMRef>ShipName}' />
+									</cells>
+									<cells>
+										<Text 
+											text='{OrdersMRef>ShipPostalCode}' />
+									</cells>
+									<cells>
+										<Text 
+											text="{path: 'OrdersMRef>ShippedDate',
+												type: 'sap.ui.model.type.DateTime',
+												formatOptions: {
+												style: 'medium'
+												}}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>			
+		</s:content>
+	</s:DetailPage>
+</mvc:View>

@@ -1,0 +1,9 @@
+<mvc:View 
+	controllerName="com.test.FUI5.controller.Main" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m">
+	<Shell id="shell" appWidthLimited='false'>
+		<SplitApp id="idAppControl"/>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,63 @@
+<mvc:View 
+	controllerName="com.test.FUI5.controller.Master" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:s="sap.m.semantic"
+	displayBlock="true" 
+	xmlns="sap.m">
+	<s:MasterPage title='Employees' showFooter='false'>
+		<!--<s:customHeaderContent>-->
+		<!--	<Toolbar>-->
+		<!--		<ToolbarSpacer />-->
+		<!--		<Text text='Employees' />-->
+		<!--		<ToolbarSpacer />-->
+		<!--	</Toolbar>-->
+		<!--</s:customHeaderContent>-->
+		<s:content>
+			<!-- headerText="Products"
+		<List
+			id="idEmployeeList"
+			items="{path: 'northwind>/Employees'}"
+			mode='SingleSelectMaster'
+			updateFinished='onUpdateFinished'
+			selectionChange='onListSelChg'>
+			<items>
+				<StandardListItem
+					title="{northwind>LastName}"
+					description="{northwind>EmployeeID}"
+					icon="{northwind>Photo}"/>
+			</items>
+		</List>
+		-->
+
+	<List
+		id="idEmployeeList"
+		items="{path: 'northwind>/Employees'}"
+		updateFinished='onUpdateFinished'
+		mode='SingleSelectMaster'
+		selectionChange='onListSelChg'>
+			<ObjectListItem
+				title="{northwind>LastName}, {northwind>FirstName}"
+				type="Active"
+				press="onListItemPress"
+				number="{northwind>PostalCode}"
+				numberUnit="{northwind>Country}"
+				showMarkers="true">
+			<firstStatus>
+				<ObjectStatus
+					text="{Status}"
+					state="{
+						path: 'Status'
+					
+					}" />
+			</firstStatus>
+			<ObjectAttribute text="{northwind>Region}" />
+			<ObjectAttribute text="{northwind>HomePhone}" />
+			<markers>
+				<ObjectMarker type="Flagged" />
+				<ObjectMarker type="Locked" />
+			</markers>			
+		</ObjectListItem>
+	</List>		
+		</s:content>
+	</s:MasterPage>
+</mvc:View>

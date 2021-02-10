@@ -1,0 +1,138 @@
+{
+	"_version": "1.9.0",
+
+	"sap.app": {
+		"id": "sap.ui.demo.masterdetail",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+
+		"applicationVersion": {
+		"version": "1.0.0"
+		},
+		"dataSources": {
+			"northwind": {     
+				 "uri": "/destinations/northwind/V3/Northwind/Northwind.svc",      
+				 "type": "OData",      
+				 "settings": {"odataVersion": "2.0" }
+			}
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://detail-view",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.test.FUI5.view.Main",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+
+		"dependencies": {
+			"minUI5Version": "1.42.0",
+			"libs": {
+				"sap.ui.core": {
+				},
+				"sap.m": {
+				},
+				"sap.f": {
+				}
+			}
+		},
+
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+
+		"models": {
+			"i18n": 			{"type": "sap.ui.model.resource.ResourceModel",	"settings": {"bundleName": "com.test.FUI5.i18n.i18n"}},
+			"MainMRef":			{"type": "sap.ui.model.json.JSONModel"},
+			"OrdersMRef":		{"type": "sap.ui.model.json.JSONModel"},
+			"otherAttrMRef":	{"type": "sap.ui.model.json.JSONModel"},
+			"OperationsMRef":	{"type": "sap.ui.model.json.JSONModel"},
+			"northwind":		{"dataSource": "northwind"}			
+		},
+		
+		"resources": {
+			"css": [{"uri": "css/style.css"}],
+        	"js"	: [
+        		
+        	]
+		},
+
+		"routing": {
+			"config": {
+				"routerClass":	"sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.test.FUI5.view",
+				"controlId": "idAppControl",
+				"controlAggregation": "detailPages",
+				"bypassed": {
+					"target": [
+						"master",
+						"notFound"
+					]
+				},				
+				"transition": "slide",
+				"async": true
+			},
+			"routes": [
+	
+				{
+					"pattern": "",
+					"name": "master",
+					"target": ["detail", "master"] 
+				},
+				{
+					"pattern": "Detail/{employeeID}",
+					"name": "detail",					
+					"target": [
+						"master",
+						"detail"
+					]
+				},
+				{
+					"pattern": "Create",
+					"name": "create",
+					"target": "create"
+				}
+			],
+			"targets":{
+				"master": {
+					"viewName": "Master",
+					"viewLevel": 1,
+					"viewId": "master",
+					"controlAggregation": "masterPages"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"viewLevel": 2,
+					"viewId": "deailId"
+				},
+				"create": {
+					"viewName": "Create",
+					"viewLevel": 1,
+					"viewId": "createId"
+				}				
+			}
+		}
+	}
+}
